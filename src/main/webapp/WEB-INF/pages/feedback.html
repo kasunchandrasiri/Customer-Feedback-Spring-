@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Customer Feedback Form</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- <link rel="stylesheet" href="../../../resources/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />  -->
+	 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../../resources/css/form-liverton.css"
+	th:href="@{/css/form-liverton.css}" />
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+	function checkCaptcha() {
+		if (grecaptcha.getResponse() == "") {
+			alert("Please verify the captcha to proceed");
+			return false;
+		} else {
+			return true;
+		}
+	}
+</script>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"  th:href="@{/}"><img
+					th:src="@{/images/logo.png}"
+					src="../../../resources/images/logo.png" /></a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"  th:href="@{/admin}"><span class="glyphicon glyphicon-log-in"></span>
+							Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid text-center">
+			<form class="form-liverton" th:action="@{/submitFeedback}"
+				th:object="${feedback}" method="POST">
+				<h3 class="form-liverton-heading">Customer Feedback Form</h3>
+				<div class="alert alert-success" th:if="${successMsg ne null}">Thank
+					you for the valuable feedback</div>
+				<label for="inputEmail" class="sr-only">Email</label> <input
+					id="inputEmail" class="form-control" placeholder="Email"
+					required="required" th:field="*{customerEmail}" type="email" /> <label
+					for="inputName" class="sr-only">Name</label> <input id="inputName"
+					class="form-control" placeholder="Name" required="required"
+					th:field="*{customerName}" type="text" /> <label for="inputPhone"
+					class="sr-only">Phone Number</label> <input id="inputPhone"
+					class="form-control" placeholder="Phone Number" required="required"
+					th:field="*{customerPhoneNumber}" type="tel" pattern="^[0-9\-\+]{9,15}$"  /> <label
+					for="inputFeedback" class="sr-only">Your Feedback</label>
+				<textarea id="inputFeedback" class="form-control"
+					placeholder="Your Feedback" required="required"
+					th:field="*{customerFeedback}"></textarea>
+				<label for="selectLevertonProduct" class="sr-only">Liverton
+					Product</label> <select th:field="*{product}" class="form-control"
+					required="required">
+					<option value="">Please select a product</option>
+					<option th:each="product : ${allProducts}" th:value="${product}"
+						th:text="${product}">Wireframe</option>
+				</select>
+				<div class="g-recaptcha"
+					data-sitekey="6LcaAiUTAAAAAFzyaUBcIqbyb9pO6Ruw6Jym5z0G"></div>
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+				<button class="btn btn-lg btn-primary btn-block" type="submit"
+					name="send" onclick="return checkCaptcha()">Submit</button>
+			</form>
+		</div>
+	<footer class="container-fluid text-center">
+		<p>&copy; Copyright | Liverton Limited 2015</p>
+	</footer>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="" />
+		<property name="password" value="" />
+		
+		<property name="javaMailProperties">
+			<props>
+            	<prop key="mail.smtp.auth">true</prop>
+            	<prop key="mail.smtp.starttls.enable">true</prop>
+        	</props>
+		</property>
+		
+	</bean>
+	
+	<bean id="emailSender" class="com.liverton.util.EmailSender">
+		<property name="mailSender" ref="mailSender" />
+		<property name="simpleMailMessage" ref="customeMailMessage" />
+	</bean>
+	
+	<bean id="customeMailMessage"
+		class="org.springframework.mail.SimpleMailMessage">
+
+		<property name="from" value="" />
+		<property name="to" value="" />
+		<property name="subject" value="Customer Feedback" />
+		<property name="text">
+		<value>
+			<![CDATA[
+				Dear Sir/Madam,
+				You got a new customer feedback for %s product.Please find the below details
+				Customer Name : %s
+				Customer Email : %s
+				Customer Phone Number : %s
+				Customer Feedback : %s
+			]]>
+		</value>
+	</property>
+	</bean>
+
+
+</beans>

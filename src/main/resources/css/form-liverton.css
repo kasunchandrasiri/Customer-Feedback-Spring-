@@ -1,0 +1,105 @@
+body {
+	background-color: #f5f5f5;
+}
+
+.form-liverton {
+	max-width: 500px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-liverton .form-liverton-heading,{
+margin-bottom:10px;
+}
+
+
+.form-liverton .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.form-liverton .form-control:focus {
+	z-index: 2;
+}
+
+.form-liverton input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.form-liverton input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+footer {
+	background-color: #F8F8F8;
+	border-top-color: #e7e7e7;
+	border-top-style: solid;
+	color: black;
+	padding: 15px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+.btn {
+	padding: 14px 24px;
+	border: 0 none;
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+	outline: 0 none;
+}
+
+.btn-primary {
+	background: #00b0f0;
+	color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active,
+	.btn-primary.active, .open>.dropdown-toggle.btn-primary {
+	background: 019DD5;
+}
+
+.btn-primary:active, .btn-primary.active {
+	background: #007299;
+	box-shadow: none;
+}
+
+.btn.outline {
+	background: none;
+	padding: 12px 22px;
+}
+
+btn-primary.outline {
+	border: 2px solid #00b0f0;
+	color: #00b0f0;
+}
+
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active,
+	.btn-primary.outline.active, .open>.dropdown-toggle.btn-primary {
+	color: 019DD5;
+	border-color: 019DD5;
+}
+
+.btn-primary.outline:active, .btn-primary.outline.active {
+	border-color: #007299;
+	color: #007299;
+	box-shadow: none;
+}
